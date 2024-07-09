@@ -45,3 +45,11 @@ services:
 
 networks:
   adm_videos_network:
+
+# sobe apenas os containers sem profile
+# docker compose up
+# docker compose logs -f
+# docker compose --profile app up -d
+# docker logs adm_videos_app -f
+# recriar container
+# docker compose --profile app up -d --force-recreate

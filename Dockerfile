@@ -6,3 +6,6 @@ RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 
 CMD java -jar /opt/app/application.jar
+
+# buildar a aplicacao
+#./gradlew bootJar
