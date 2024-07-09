@@ -20,6 +20,6 @@ jobs:
         with:
           java-version: 17
           distribution: 'adopt'
-      # 3. Executar os testes da aplicacao
+      # 3. Executar os testes da aplicacao.
       - name: Run application tests
         run: ./gradlew test
