@@ -4,6 +4,7 @@ services:
   app:
     container_name: adm_videos_app
     build: .
+#    image: fernandonkgw/fc3-admin-catalogo:modulos_26_ci-cd-1
     profiles: ["app"]
     restart: unless-stopped
     env_file:
