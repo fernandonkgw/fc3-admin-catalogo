@@ -1,5 +1,6 @@
 package com.fullcycle.admin.catalogo.e2e;
 
+import com.fullcycle.admin.catalogo.ApiTest;
 import com.fullcycle.admin.catalogo.domain.Identifier;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMemberID;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMemberType;
@@ -178,6 +179,7 @@ public interface MockDsl {
     private String given(final String url, final Object body) throws Exception {
 
         final var aRequest = post(url)
+                .with(ApiTest.ADMIN_JWT)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Json.writeValueAsString(body));
@@ -194,6 +196,7 @@ public interface MockDsl {
     private ResultActions givenResult(final String url, final Object body) throws Exception {
 
         final var aRequest = post(url)
+                .with(ApiTest.ADMIN_JWT)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Json.writeValueAsString(body));
@@ -210,6 +213,7 @@ public interface MockDsl {
             final String direction
     ) throws Exception {
         final var aRequest = get(url)
+                .with(ApiTest.ADMIN_JWT)
                 .queryParam("page", String.valueOf(page))
                 .queryParam("per_page", String.valueOf(perPage))
                 .queryParam("search", search)
@@ -222,6 +226,7 @@ public interface MockDsl {
 
     private <T> T retrieve(final String url, final Identifier anId, final Class<T> clazz) throws Exception {
         final var aRequest = get(url + anId.getValue())
+                .with(ApiTest.ADMIN_JWT)
                 .accept(MediaType.APPLICATION_JSON);
 
         final var json = mvc().perform(aRequest)
@@ -234,6 +239,7 @@ public interface MockDsl {
 
     private ResultActions retrieveResult(final String url, final Identifier anId) throws Exception {
         final var aRequest = get(url + anId.getValue())
+                .with(ApiTest.ADMIN_JWT)
                 .accept(MediaType.APPLICATION_JSON);
 
         return mvc().perform(aRequest);
@@ -241,6 +247,7 @@ public interface MockDsl {
 
     private ResultActions delete(final String url, final Identifier anId) throws Exception {
         final var aRequest = MockMvcRequestBuilders.delete(url, anId.getValue())
+                .with(ApiTest.ADMIN_JWT)
                 .accept(MediaType.APPLICATION_JSON);
 
         return mvc().perform(aRequest);
@@ -249,6 +256,7 @@ public interface MockDsl {
     private ResultActions update(final String url, final Identifier anId, final Object body) throws Exception {
 
         final var aRequest = put(url, anId.getValue())
+                .with(ApiTest.ADMIN_JWT)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Json.writeValueAsString(body));
